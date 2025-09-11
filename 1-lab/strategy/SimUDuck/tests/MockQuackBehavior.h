@@ -1,0 +1,8 @@
+//
+// Created by sov48 on 12.09.2025.
+//
+
+#ifndef MOCKQUACKBEHAVIOR_H
+#define MOCKQUACKBEHAVIOR_H
+
+#endif //MOCKQUACKBEHAVIOR_H

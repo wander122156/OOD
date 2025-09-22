@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.30)
-project(4-lab)
+project(Shapes)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_subdirectory(googletest)
 
-add_executable(4-lab
+add_executable(Shapes
         src/main.cpp
         src/ShapeParser.cpp
         src/CPoint.cpp

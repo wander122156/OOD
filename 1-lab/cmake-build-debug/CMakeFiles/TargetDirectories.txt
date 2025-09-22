@@ -1,3 +1,0 @@
-D:/Projects/OOD(5curse)/1-lab/cmake-build-debug/CMakeFiles/SimUDuck.dir
-D:/Projects/OOD(5curse)/1-lab/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Projects/OOD(5curse)/1-lab/cmake-build-debug/CMakeFiles/rebuild_cache.dir

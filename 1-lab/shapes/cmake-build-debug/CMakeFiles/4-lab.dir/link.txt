@@ -1,3 +1,0 @@
-"D:\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\4-lab.dir/objects.a
-"D:\JetBrains\CLion 2024.3.5\bin\mingw\bin\ar.exe" qc CMakeFiles\4-lab.dir/objects.a @CMakeFiles\4-lab.dir\objects1.rsp
-"D:\JetBrains\CLion 2024.3.5\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\4-lab.dir/objects.a -Wl,--no-whole-archive -o 4-lab.exe -Wl,--out-implib,lib4-lab.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\4-lab.dir\linkLibs.rsp

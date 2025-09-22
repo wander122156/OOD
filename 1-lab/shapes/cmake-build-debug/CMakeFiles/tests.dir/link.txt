@@ -1,3 +1,0 @@
-"D:\JetBrains\CLion 2024.3.5\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\tests.dir/objects.a
-"D:\JetBrains\CLion 2024.3.5\bin\mingw\bin\ar.exe" qc CMakeFiles\tests.dir/objects.a @CMakeFiles\tests.dir\objects1.rsp
-"D:\JetBrains\CLion 2024.3.5\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\tests.dir/objects.a -Wl,--no-whole-archive -o tests.exe -Wl,--out-implib,libtests.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\tests.dir\linkLibs.rsp

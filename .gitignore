@@ -1,3 +1,4 @@
+1-lab/strategy/SimUDuck/googletest/
 **/cmake-build-debug/
 **/cmake-build-release/
 **/build/
@@ -114,4 +115,4 @@ http-client.private.env.json
 
 # Apifox Helper cache
 .idea/.cache/.Apifox_Helper
-.idea/ApifoxUploaderProjectSetting.xml
+.idea/ApifoxUploaderProjectSetting.xml**/googletest/

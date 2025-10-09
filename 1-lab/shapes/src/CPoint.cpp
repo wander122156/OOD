@@ -1,10 +1,15 @@
 #include "CPoint.h"
 
-CPoint::CPoint(double x, double y) : m_x(x), m_y(y)
-{}
+CPoint::CPoint(float x, float y) : m_x(x), m_y(y)
+{
+}
 
-double CPoint::GetX() const
-{ return m_x; }
+float CPoint::GetX() const
+{
+    return m_x;
+}
 
-double CPoint::GetY() const
-{ return m_y; }
+float CPoint::GetY() const
+{
+    return m_y;
+}

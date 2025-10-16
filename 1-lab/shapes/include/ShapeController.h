@@ -9,10 +9,12 @@ class ShapeController
 public:
     static std::vector<std::unique_ptr<IShape> > ReadShapesFromFile(const std::string &filename);
     static void PrintShapesInfo(const std::vector<std::unique_ptr<IShape> > &shapes);
+    void DrawShapes(sf::RenderWindow &window, std::vector<std::unique_ptr<IShape>> &shapes);
+
+    void Run();
 private:
     struct StringConstants
     {
-//        static constexpr auto FILE_NAME = "shapes.txt";
         static constexpr auto ERROR_OPEN_FILE = "ERROR: Cannot open file: ";
 
         static constexpr auto SHAPE_TYPE_TRIANGLE = "TRIANGLE";

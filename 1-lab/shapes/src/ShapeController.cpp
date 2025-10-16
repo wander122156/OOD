@@ -19,7 +19,7 @@ std::vector<std::unique_ptr<IShape> > ShapeController::ReadShapesFromFile(const 
 
     if (!file.is_open())
     {
-        std::cerr << ShapeController::StringConstants::ERROR_OPEN_FILE << filename << std::endl;
+        std::cerr << StringConstants::ERROR_OPEN_FILE << filename << std::endl;
         return shapes;
     }
 
@@ -58,7 +58,7 @@ std::vector<std::unique_ptr<IShape> > ShapeController::ReadShapesFromFile(const 
             ss >> center >> x >> y >> radius >> r;
 
             shapes.push_back(std::make_unique<CircleAdapter>(
-                    CPoint(x, y), static_cast<float>(r)
+                    CPoint(x, y), r
             ));
         }
     }
@@ -70,9 +70,42 @@ void ShapeController::PrintShapesInfo(const std::vector<std::unique_ptr<IShape> 
 {
     for (size_t i = 0; i < shapes.size(); ++i)
     {
-        std::cout << ShapeController::StringConstants::SHAPE_SHAPE << (i + 1) << ":" << std::endl;
-        std::cout << ShapeController::StringConstants::SHAPE_AREA << shapes[i]->GetArea() << std::endl;
-        std::cout << ShapeController::StringConstants::SHAPE_PERIMETR << shapes[i]->GetPerimeter() << std::endl;
+        std::cout << StringConstants::SHAPE_SHAPE << (i + 1) << ":" << std::endl;
+        std::cout << StringConstants::SHAPE_AREA << shapes[i]->GetArea() << std::endl;
+        std::cout << StringConstants::SHAPE_PERIMETR << shapes[i]->GetPerimeter() << std::endl;
         std::cout << std::endl;
     }
+}
+void ShapeController::DrawShapes(sf::RenderWindow &window, std::vector<std::unique_ptr<IShape>> &shapes)
+{
+    while (window.isOpen())
+    {
+        sf::Event event{};
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+        }
+
+        window.clear(sf::Color::White);
+
+        for (auto &shape : shapes)
+        {
+            shape->Draw(window);
+        }
+
+        window.display();
+    }
+}
+void ShapeController::Run()
+{
+    auto shapes = ReadShapesFromFile("shapes.txt");
+    PrintShapesInfo(shapes);
+
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "Shapes Visualization");
+
+    DrawShapes(window, shapes);
+
 }

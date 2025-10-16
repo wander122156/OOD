@@ -14,19 +14,18 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(sfml)
 
-
 add_executable(Shapes
         src/main.cpp
-
         src/CPoint.cpp
         src/ConvexAdapter.cpp
         src/RectangleAdapter.cpp
         src/CircleAdapter.cpp
-
         include/IShape.h
         include/CircleAdapter.h
         include/ConvexAdapter.h
         include/RectangleAdapter.h
+        include/ShapeController.h
+        src/ShapeController.cpp
 )
 
 include_directories(include)
@@ -35,6 +34,25 @@ configure_file(
         ${CMAKE_SOURCE_DIR}/shapes.txt
         ${CMAKE_CURRENT_BINARY_DIR}/shapes.txt
         COPYONLY
+)
+
+# Автоматическое копирование DLL файлов после сборки
+add_custom_command(TARGET Shapes POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:sfml-graphics>"
+        $<TARGET_FILE_DIR:Shapes>
+)
+
+add_custom_command(TARGET Shapes POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:sfml-window>"
+        $<TARGET_FILE_DIR:Shapes>
+)
+
+add_custom_command(TARGET Shapes POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:sfml-system>"
+        $<TARGET_FILE_DIR:Shapes>
 )
 
 add_executable(tests
@@ -51,3 +69,8 @@ target_link_libraries(Shapes
         sfml-window
         sfml-system
 )
+
+# Для Windows добавляем системные библиотеки
+if(WIN32)
+    target_link_libraries(Shapes opengl32 winmm)
+endif()

@@ -1,4 +1,6 @@
-1-lab/strategy/SimUDuck/googletest/
+1-lab/strategy/
+1-lab/4-lab/
+
 **/cmake-build-debug/
 **/cmake-build-release/
 **/build/

@@ -10,9 +10,7 @@ CircleAdapter::CircleAdapter(const CPoint &center, float radius)
     m_circle.setRadius(radius);
     m_circle.setPosition(center.GetX() - radius, center.GetY() - radius);
 
-    m_circle.setFillColor(sf::Color::Blue);
-    m_circle.setOutlineColor(sf::Color::Black);
-    m_circle.setOutlineThickness(2.0f);
+    m_circle.setFillColor(sf::Color::Black);
 }
 
 float CircleAdapter::GetArea() const
@@ -27,7 +25,7 @@ float CircleAdapter::GetPerimeter() const
     return perimeter;
 }
 
-void CircleAdapter::Draw(sf::RenderWindow& window) const
+void CircleAdapter::Draw(sf::RenderWindow &window) const
 {
     window.draw(m_circle);
 }

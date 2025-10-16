@@ -6,6 +6,7 @@ public:
     CPoint(float x, float y);
 
     float GetX() const;
+
     float GetY() const;
 
 private:

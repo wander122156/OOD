@@ -37,7 +37,7 @@ std::vector<std::unique_ptr<IShape> > ShapeController::ReadShapesFromFile(const 
             ss >> p1 >> x1 >> y1 >> p2 >> x2 >> y2 >> p3 >> x3 >> y3;
 
             shapes.push_back(std::make_unique<ConvexAdapter>(
-                    CPoint(x1, y1), CPoint(x2, y2), CPoint(x3, y3)
+                CPoint(x1, y1), CPoint(x2, y2), CPoint(x3, y3)
             ));
         } else if (shapeType == StringConstants::SHAPE_TYPE_RECTANGLE)
         {
@@ -47,9 +47,8 @@ std::vector<std::unique_ptr<IShape> > ShapeController::ReadShapesFromFile(const 
             ss >> p1 >> x1 >> y1 >> p2 >> x2 >> y2;
 
             shapes.push_back(std::make_unique<RectangleAdapter>(
-                    CPoint(x1, y1), CPoint(x2, y2)
+                CPoint(x1, y1), CPoint(x2, y2)
             ));
-
         } else if (shapeType == StringConstants::SHAPE_TYPE_CIRCLE)
         {
             std::string center, radius;
@@ -58,7 +57,7 @@ std::vector<std::unique_ptr<IShape> > ShapeController::ReadShapesFromFile(const 
             ss >> center >> x >> y >> radius >> r;
 
             shapes.push_back(std::make_unique<CircleAdapter>(
-                    CPoint(x, y), r
+                CPoint(x, y), r
             ));
         }
     }
@@ -76,7 +75,8 @@ void ShapeController::PrintShapesInfo(const std::vector<std::unique_ptr<IShape> 
         std::cout << std::endl;
     }
 }
-void ShapeController::DrawShapes(sf::RenderWindow &window, std::vector<std::unique_ptr<IShape>> &shapes)
+
+void ShapeController::DrawShapes(sf::RenderWindow &window, std::vector<std::unique_ptr<IShape> > &shapes)
 {
     while (window.isOpen())
     {
@@ -91,14 +91,15 @@ void ShapeController::DrawShapes(sf::RenderWindow &window, std::vector<std::uniq
 
         window.clear(sf::Color::White);
 
-        for (auto &shape : shapes)
+        for (auto &shape: shapes)
         {
             shape->Draw(window);
         }
-
+        
         window.display();
     }
 }
+
 void ShapeController::Run()
 {
     auto shapes = ReadShapesFromFile("shapes.txt");
@@ -107,5 +108,4 @@ void ShapeController::Run()
     sf::RenderWindow window(sf::VideoMode(1000, 800), "Shapes Visualization");
 
     DrawShapes(window, shapes);
-
 }

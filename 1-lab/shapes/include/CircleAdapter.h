@@ -9,8 +9,10 @@ class CircleAdapter : public IShape
 public:
     CircleAdapter(const CPoint &m_center, float m_radius);
 
-    float GetArea() const override;
+    RectD GetFrame() const override;
+    // void SetFrame(const RectD& frame) override;
 
+    float GetArea() const override;
     float GetPerimeter() const override;
 
     void Draw(sf::RenderWindow &window) const override;

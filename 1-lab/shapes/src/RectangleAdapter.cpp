@@ -13,6 +13,12 @@ RectangleAdapter::RectangleAdapter(const CPoint &P1, const CPoint &P2)
     m_rectangle.setFillColor(sf::Color::Yellow);
 }
 
+RectD RectangleAdapter::GetFrame() const
+{
+    sf::FloatRect bounds = m_rectangle.getGlobalBounds();
+    return {bounds.left, bounds.top, bounds.width, bounds.height};
+}
+
 float RectangleAdapter::GetArea() const
 {
     return m_rectangle.getSize().x * m_rectangle.getSize().y;

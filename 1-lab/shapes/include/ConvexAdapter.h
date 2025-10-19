@@ -11,6 +11,8 @@ class ConvexAdapter : public IShape
 public:
     ConvexAdapter(const CPoint &v1, const CPoint &v2, const CPoint &v3);
 
+    RectD GetFrame() const override;
+
     float GetArea() const override;
 
     float GetPerimeter() const override;

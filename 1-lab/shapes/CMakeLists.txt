@@ -24,8 +24,17 @@ add_executable(Shapes
         include/CircleAdapter.h
         include/ConvexAdapter.h
         include/RectangleAdapter.h
-        include/ShapeController.h
-        src/ShapeController.cpp
+        include/Picture.h
+        src/Picture.cpp
+        include/IGroup.h
+        include/Group.h
+        include/RectD.h
+        include/ShapesController.h
+        src/ShapesController.cpp
+        src/PictureService.cpp
+        include/PictureService.h
+        src/SelectionManager.cpp
+        include/SelectionManager.h
 )
 
 include_directories(include)
@@ -71,6 +80,6 @@ target_link_libraries(Shapes
 )
 
 # Для Windows добавляем системные библиотеки
-if(WIN32)
+if (WIN32)
     target_link_libraries(Shapes opengl32 winmm)
-endif()
+endif ()

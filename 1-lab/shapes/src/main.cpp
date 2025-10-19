@@ -1,14 +1,8 @@
-#include <sstream>
-#include <SFML/Graphics.hpp>
-#include "IShape.h"
-#include "ShapeController.h"
-// вынести цикл в контроллер draw
-
-// объясвить controller
-// controller.run
+#include "Picture.h"
+#include "ShapesController.h"
 
 int main()
 {
-    ShapeController controller;
+    ShapesController controller;
     controller.Run();
 }

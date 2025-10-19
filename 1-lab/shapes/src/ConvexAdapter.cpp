@@ -12,6 +12,12 @@ ConvexAdapter::ConvexAdapter(const CPoint &v1, const CPoint &v2, const CPoint &v
     m_convex.setFillColor(sf::Color::Red);
 }
 
+RectD ConvexAdapter::GetFrame() const
+{
+    sf::FloatRect bounds = m_convex.getGlobalBounds();
+    return {bounds.left, bounds.top, bounds.width, bounds.height};
+}
+
 float ConvexAdapter::GetArea() const
 {
     sf::Vector2f p1 = m_convex.getPoint(0);

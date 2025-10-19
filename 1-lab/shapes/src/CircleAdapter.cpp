@@ -5,12 +5,20 @@
 #include "SFML/Graphics/CircleShape.hpp"
 
 
+
+
 CircleAdapter::CircleAdapter(const CPoint &center, float radius)
 {
     m_circle.setRadius(radius);
     m_circle.setPosition(center.GetX() - radius, center.GetY() - radius);
 
     m_circle.setFillColor(sf::Color::Black);
+}
+
+RectD CircleAdapter::GetFrame() const
+{
+    sf::FloatRect bounds = m_circle.getGlobalBounds();
+    return {bounds.left, bounds.top, bounds.width, bounds.height};
 }
 
 float CircleAdapter::GetArea() const

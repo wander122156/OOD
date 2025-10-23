@@ -13,6 +13,9 @@ public:
 
     size_t GetShapesCount() const;
 
+
+    void DrawShape(sf::RenderWindow &window, IShape *shape);
+
 private:
     std::vector<std::unique_ptr<IShape> > m_shapes;
 };

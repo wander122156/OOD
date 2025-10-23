@@ -73,10 +73,10 @@ void ShapesController::Draw(sf::RenderWindow &window)
     auto &shapes = m_picture.GetShapes();
     for (auto &shape: shapes)
     {
-        shape->Draw(window);
+        m_picture.DrawShape( window, shape.get());
     }
 
-    // Рисуем выделение через SelectionManager
+    // выделение
     m_selectionManager.DrawSelection(window);
 
     window.display();

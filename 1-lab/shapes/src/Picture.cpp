@@ -27,9 +27,7 @@ size_t Picture::GetShapesCount() const
     return m_shapes.size();
 }
 
-// IShape* Picture::GetShapePtr(size_t index) const
-// {
-//     return (index < m_shapes.size())
-//         ? m_shapes[index].get()
-//         : nullptr;
-// }
+void Picture::DrawShape(sf::RenderWindow &window, IShape *shape)
+{
+    shape->Draw(window);
+}

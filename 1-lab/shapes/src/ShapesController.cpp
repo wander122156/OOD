@@ -4,9 +4,8 @@
 #include <sstream>
 
 #include "ConvexAdapter.h"
-#include "RectangleAdapter.h"
-#include "CircleAdapter.h"
 #include "iostream"
+#include "ShapeFactory.h"
 
 ShapesController::ShapesController()
 {
@@ -28,39 +27,14 @@ void ShapesController::LoadShapesFromFile(const std::string &filename)
     while (std::getline(file, line))
     {
         std::stringstream ss(line);
-        std::string shapeType;
-        ss >> shapeType;
 
-        if (shapeType == StringConstants::SHAPE_TYPE_TRIANGLE)
+        auto shape = ShapeFactory::CreateShape(line);
+        if (shape)
         {
-            std::string p1, p2, p3;
-            float x1, y1, x2, y2, x3, y3;
-
-            ss >> p1 >> x1 >> y1 >> p2 >> x2 >> y2 >> p3 >> x3 >> y3;
-
-            m_picture.AddShape(std::make_unique<ConvexAdapter>(
-                CPoint(x1, y1), CPoint(x2, y2), CPoint(x3, y3)
-            ));
-        } else if (shapeType == StringConstants::SHAPE_TYPE_RECTANGLE)
+            m_picture.AddShape(std::move(shape));
+        } else
         {
-            std::string p1, p2;
-            float x1, y1, x2, y2;
-
-            ss >> p1 >> x1 >> y1 >> p2 >> x2 >> y2;
-
-            m_picture.AddShape(std::make_unique<RectangleAdapter>(
-                CPoint(x1, y1), CPoint(x2, y2)
-            ));
-        } else if (shapeType == StringConstants::SHAPE_TYPE_CIRCLE)
-        {
-            std::string center, radius;
-            float x, y, r;
-
-            ss >> center >> x >> y >> radius >> r;
-
-            m_picture.AddShape(std::make_unique<CircleAdapter>(
-                CPoint(x, y), r
-            ));
+            std::cout << StringConstants::ERROR_CREATE_SHAPE << line << std::endl;
         }
     }
 

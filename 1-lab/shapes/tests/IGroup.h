@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-#include "IShape.h"
+#include "../include/IShape.h"
 
 class IGroup: IShape
 {

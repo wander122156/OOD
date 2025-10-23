@@ -30,6 +30,7 @@ private:
     struct StringConstants
     {
         static constexpr auto ERROR_OPEN_FILE = "ERROR: Cannot open file: ";
+        static constexpr auto ERROR_CREATE_SHAPE = "Failed to create shape from: " ;
 
         static constexpr auto SHAPE_TYPE_TRIANGLE = "TRIANGLE";
         static constexpr auto SHAPE_TYPE_RECTANGLE = "RECTANGLE";

@@ -26,8 +26,8 @@ add_executable(Shapes
         include/RectangleAdapter.h
         include/Picture.h
         src/Picture.cpp
-        include/IGroup.h
-        include/Group.h
+        tests/IGroup.h
+        tests/Group.h
         include/RectD.h
         include/ShapesController.h
         src/ShapesController.cpp
@@ -35,6 +35,8 @@ add_executable(Shapes
         include/PictureService.h
         src/SelectionManager.cpp
         include/SelectionManager.h
+        src/ShapeFactory.cpp
+        include/ShapeFactory.h
 )
 
 include_directories(include)

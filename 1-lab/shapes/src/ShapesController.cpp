@@ -116,6 +116,7 @@ void ShapesController::HandleMouseClick(float x, float y)
     auto &shapes = m_picture.GetShapes();
     IShape *clickedShape = m_selectionManager.GetShapeAtPoint(shapes, x, y);
 
+    //временно
     if (clickedShape)
     {
         m_selectionManager.SelectShape(clickedShape);

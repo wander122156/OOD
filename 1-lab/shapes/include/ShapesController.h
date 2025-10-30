@@ -32,10 +32,6 @@ private:
         static constexpr auto ERROR_OPEN_FILE = "ERROR: Cannot open file: ";
         static constexpr auto ERROR_CREATE_SHAPE = "Failed to create shape from: " ;
 
-        static constexpr auto SHAPE_TYPE_TRIANGLE = "TRIANGLE";
-        static constexpr auto SHAPE_TYPE_RECTANGLE = "RECTANGLE";
-        static constexpr auto SHAPE_TYPE_CIRCLE = "CIRCLE";
-
         static constexpr auto SHAPE_SHAPE = "Shape ";
         static constexpr auto SHAPE_AREA = "  Area: ";
         static constexpr auto SHAPE_PERIMETR = "  Perimeter: ";

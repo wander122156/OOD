@@ -17,6 +17,8 @@ public:
 
     float GetPerimeter() const override;
 
+    void Move(CPoint &dxy) override;
+
     void Draw(sf::RenderWindow &window) const override;
 
 private:

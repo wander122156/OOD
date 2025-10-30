@@ -1,5 +1,7 @@
 #pragma once
 
+#include <CPoint.h>
+
 #include "SFML/Graphics/RenderWindow.hpp"
 #include "RectD.h"
 
@@ -14,6 +16,8 @@ public:
 
     virtual RectD GetFrame() const = 0;
     // virtual void SetFrame(const RectD& frame) = 0;
+
+    virtual void Move(CPoint &dxy) = 0;
 
     virtual void Draw(sf::RenderWindow &window) const = 0;
 };

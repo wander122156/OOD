@@ -17,6 +17,23 @@ void Picture::RemoveShape(IShape *shape)
     );
 }
 
+std::unique_ptr<IShape> Picture::ExtractShape(IShape* shape)
+{
+    auto it = std::find_if(m_shapes.begin(), m_shapes.end(),
+        [shape](const std::unique_ptr<IShape>& ptr) {
+            return ptr.get() == shape;
+        });
+
+    if (it != m_shapes.end())
+    {
+        std::unique_ptr<IShape> extracted = std::move(*it);
+        m_shapes.erase(it);
+        return extracted;
+    }
+
+    return nullptr;
+}
+
 const std::vector<std::unique_ptr<IShape> > &Picture::GetShapes() const
 {
     return m_shapes;

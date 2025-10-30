@@ -24,6 +24,16 @@ private:
 
     void HandleKeyPress(sf::Keyboard::Key key);
 
+    void HandleMouseRelease();
+    void HandleMouseMove(float x, float y);
+
+    void HandleGroupShapes();
+    void HandleUngroupShapes();
+
+    bool m_isDragging = false;
+    sf::Vector2f m_dragStartPosition;
+    sf::Vector2f m_dragOffset;
+
     Picture m_picture;
     SelectionManager m_selectionManager;
 

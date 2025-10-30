@@ -4,9 +4,6 @@
 
 #include "SFML/Graphics/CircleShape.hpp"
 
-
-
-
 CircleAdapter::CircleAdapter(const CPoint &center, float radius)
 {
     m_circle.setRadius(radius);
@@ -31,6 +28,15 @@ float CircleAdapter::GetPerimeter() const
 {
     float perimeter = 2 * M_PI * m_circle.getRadius();
     return perimeter;
+}
+
+void CircleAdapter::Move(CPoint &dxy)
+{
+
+    sf::Vector2f currentPos = m_circle.getPosition();
+
+    m_circle.setPosition(currentPos.x + dxy.GetX(),
+                         currentPos.y + dxy.GetY());
 }
 
 void CircleAdapter::Draw(sf::RenderWindow &window) const

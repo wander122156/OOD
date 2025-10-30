@@ -29,6 +29,14 @@ float RectangleAdapter::GetPerimeter() const
     return 2 * (m_rectangle.getSize().x + m_rectangle.getSize().y);
 }
 
+void RectangleAdapter::Move(CPoint &dxy)
+{
+    sf::Vector2f currentPos = m_rectangle.getPosition();
+
+    m_rectangle.setPosition(currentPos.x + dxy.GetX(),
+                            currentPos.y + dxy.GetY());
+}
+
 void RectangleAdapter::Draw(sf::RenderWindow &window) const
 {
     window.draw(m_rectangle);

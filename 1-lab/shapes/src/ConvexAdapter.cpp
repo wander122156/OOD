@@ -12,6 +12,17 @@ ConvexAdapter::ConvexAdapter(const CPoint &v1, const CPoint &v2, const CPoint &v
     m_convex.setFillColor(sf::Color::Red);
 }
 
+void ConvexAdapter::Move(CPoint &dxy)
+{
+    sf::Vector2f p1 = m_convex.getPoint(0);
+    sf::Vector2f p2 = m_convex.getPoint(1);
+    sf::Vector2f p3 = m_convex.getPoint(2);
+
+    m_convex.setPoint(0, sf::Vector2f(p1.x + dxy.GetX(), p1.y + dxy.GetY()));
+    m_convex.setPoint(1, sf::Vector2f(p2.x + dxy.GetX(), p2.y + dxy.GetY()));
+    m_convex.setPoint(2, sf::Vector2f(p3.x + dxy.GetX(), p3.y + dxy.GetY()));
+}
+
 RectD ConvexAdapter::GetFrame() const
 {
     sf::FloatRect bounds = m_convex.getGlobalBounds();

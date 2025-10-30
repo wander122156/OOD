@@ -1,31 +1,61 @@
 #include "../include/SelectionManager.h"
 
-void SelectionManager::SelectShape(IShape *shape)
+void SelectionManager::SelectShape(IShape* shape)
 {
-    m_selectedShape = shape;
+    m_selectedShapes.clear();
+    if (shape)
+    {
+        m_selectedShapes.push_back(shape);
+    }
 }
 
-void SelectionManager::DeselectShape(IShape *shape)
+void SelectionManager::SelectShapes(const std::vector<IShape*>& shapes)
 {
-    if (m_selectedShape == shape)
+    m_selectedShapes = shapes;
+    // Убираем дубликаты
+    auto last = std::unique(m_selectedShapes.begin(), m_selectedShapes.end());
+    m_selectedShapes.erase(last, m_selectedShapes.end());
+}
+
+void SelectionManager::AddToSelection(IShape* shape)
+{
+    if (shape && std::find(m_selectedShapes.begin(), m_selectedShapes.end(), shape) == m_selectedShapes.end())
     {
-        m_selectedShape = nullptr;
+        m_selectedShapes.push_back(shape);
     }
+}
+
+void SelectionManager::DeselectShape(IShape* shape)
+{
+    m_selectedShapes.erase(
+        std::remove(m_selectedShapes.begin(), m_selectedShapes.end(), shape),
+        m_selectedShapes.end()
+    );
 }
 
 void SelectionManager::ClearSelection()
 {
-    m_selectedShape = nullptr;
+    m_selectedShapes.clear();
 }
 
-IShape *SelectionManager::GetSelectedShape() const
+IShape* SelectionManager::GetSelectedShape() const
 {
-    return m_selectedShape;
+    return m_selectedShapes.empty() ? nullptr : m_selectedShapes[0];
+}
+
+const std::vector<IShape*>& SelectionManager::GetSelectedShapes() const
+{
+    return m_selectedShapes;
 }
 
 bool SelectionManager::HasSelection() const
 {
-    return m_selectedShape != nullptr;
+    return !m_selectedShapes.empty();
+}
+
+bool SelectionManager::HasMultipleSelection() const
+{
+    return m_selectedShapes.size() > 1;
 }
 
 IShape *SelectionManager::GetShapeAtPoint(const std::vector<std::unique_ptr<IShape> > &shapes, float x, float y)
@@ -41,11 +71,11 @@ IShape *SelectionManager::GetShapeAtPoint(const std::vector<std::unique_ptr<ISha
     return nullptr;
 }
 
-void SelectionManager::DrawSelection(sf::RenderWindow &window) const
+void SelectionManager::DrawSelection(sf::RenderWindow& window) const
 {
-    if (HasSelection())
+    for (IShape* shape : m_selectedShapes)
     {
-        RectD frame = m_selectedShape->GetFrame();
+        RectD frame = shape->GetFrame();
 
         sf::RectangleShape selectionFrame;
         selectionFrame.setSize(sf::Vector2f(static_cast<float>(frame.width),
@@ -53,9 +83,10 @@ void SelectionManager::DrawSelection(sf::RenderWindow &window) const
         selectionFrame.setPosition(static_cast<float>(frame.left),
                                    static_cast<float>(frame.top));
         selectionFrame.setFillColor(sf::Color::Transparent);
-        selectionFrame.setOutlineColor(sf::Color::Magenta );
+        selectionFrame.setOutlineColor(sf::Color::Magenta);
         selectionFrame.setOutlineThickness(2.0f);
 
         window.draw(selectionFrame);
     }
 }
+
